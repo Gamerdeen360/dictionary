@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lexicon Obscura</title>
+<style>
+:root{--bg:#f7f3ea;--fg:#1f1a14;--mute:#7d7262;--line:#e2d9c6;--card:#fffdf8;--accent:#8c3b1e;box-sizing:border-box;padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15110d;--fg:#f1e8d6;--mute:#a79a84;--line:#2f2820;--card:#1d1812;--accent:#e0976a}}
+:root[data-theme="dark"]{--bg:#15110d;--fg:#f1e8d6;--mute:#a79a84;--line:#2f2820;--card:#1d1812;--accent:#e0976a}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Georgia,"Times New Roman",serif}
+header{position:sticky;top:0;z-index:5;background:var(--bg);padding:calc(14px + env(safe-area-inset-top,0px)) 20px 10px;border-bottom:1px solid var(--line)}
+.in{max-width:760px;margin:0 auto}
+h1{margin:0;font-weight:400;font-size:1.7rem;letter-spacing:.14em;text-transform:uppercase}
+.sub{color:var(--mute);font-size:.85rem;margin:2px 0 10px;font-style:italic}
+#q{width:100%;box-sizing:border-box;border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:999px;padding:9px 16px;font-size:.95rem;font-family:inherit;outline:none}
+#q:focus{border-color:var(--accent)}
+#nv{display:flex;gap:6px;margin-top:10px;overflow-x:auto;padding-bottom:2px}
+#nv a{white-space:nowrap;font-family:system-ui,sans-serif;font-size:.75rem;color:var(--mute);border:1px solid var(--line);border-radius:999px;padding:5px 12px;text-decoration:none}
+#nv a:hover{color:var(--accent);border-color:var(--accent)}
+main{max-width:760px;margin:0 auto;padding:10px 20px 60px}
+section{margin-top:34px}
+section h2{font-weight:400;font-size:1.25rem;margin:0 0 4px;display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--fg);padding-bottom:6px}
+section h2 small{font-family:system-ui,sans-serif;font-size:.7rem;color:var(--mute);letter-spacing:.1em}
+.e{padding:16px 0;border-bottom:1px solid var(--line)}
+.e h3{margin:0;font-size:1.35rem;font-weight:700;color:var(--accent)}
+.e h3 i{font-weight:400;color:var(--mute);font-size:.9rem;margin-left:8px}
+.e p{margin:5px 0 0;line-height:1.55}
+.e .x{color:var(--mute);font-style:italic;border-left:2px solid var(--line);padding-left:12px;margin-top:8px}
+#no{text-align:center;color:var(--mute);margin-top:50px;display:none;font-style:italic}
+</style>
+</head>
+<body>
+<header><div class="in">
+<h1>Lexicon Obscura</h1>
+<div class="sub" id="ct"></div>
+<input id="q" type="search" placeholder="Search words or meanings…" autocomplete="off">
+<div id="nv"></div>
+</div></header>
+<main id="m"></main>
+<div id="no">No words found.</div>
+<script>
+const D={
+"🌦️ Weather & Sky":[
+["Brontide","n.","The low rumbling sound of distant thunder.","A faint brontide rolled across the valley, and we hurried to pack up the picnic."],
+["Gegenschein","n.","A faint glow in the night sky opposite the sun, caused by sunlight reflecting off interplanetary dust.","Far from any city lights, she finally made out the gegenschein above the horizon."],
+["Haar","n.","A cold sea fog that drifts in along the east coast of Scotland and northern England.","A thick haar swallowed the harbour, and the fishing boats vanished one by one."],
+["Hyetal","adj.","Relating to rain or rainfall.","The region's hyetal patterns swing sharply between its dry season and the monsoon."],
+["Nacreous","adj.","Having a pearly, iridescent sheen; also describes rare, shimmering clouds high above polar regions.","Nacreous clouds glowed pink and green over the Arctic town at dawn."],
+["Sastrugi","n.","Sharp, irregular ridges formed on snow by the wind.","The sled bounced over the hard sastrugi, rattling every bolt."],
+["Virga","n.","Rain that evaporates before reaching the ground, seen as streaks hanging below a cloud.","Dark ribbons of virga hung over the desert without ever touching the sand."]],
+"⛰️ Nature & Land":[
+["Bergschrund","n.","A crevasse at the head of a glacier where moving ice pulls away from the stationary ice or rock above.","The climbers paused at the bergschrund, hunting for a safe place to cross."],
+["Cenote","n.","A natural sinkhole that exposes groundwater, especially in the Yucatán.","We swam in a cool cenote ringed by hanging roots and shafts of sunlight."],
+["Fumarole","n.","An opening in or near a volcano that gives off steam and gases.","Sulfur-scented steam hissed from a fumarole beside the trail."],
+["Holloway","n.","A sunken road worn deep by centuries of traffic and weather.","The old holloway was so deep that the hedges met above our heads."],
+["Lahar","n.","A destructive volcanic mudflow of ash, rock and water.","Villagers were evacuated before the lahar thundered down the river valley."],
+["Tarn","n.","A small mountain lake, often in a hollow carved by a glacier.","A still tarn mirrored the peaks above it."],
+["Yardang","n.","A streamlined ridge of rock carved by wind-blown sand.","The desert floor was lined with yardangs, like a fleet of stone ships."]],
+"💭 Mind & Emotion":[
+["Abulia","n.","A pathological loss of the will to act or make decisions.","After weeks of exhaustion, abulia settled over him, and even choosing lunch felt impossible."],
+["Acedia","n.","A state of listlessness or spiritual apathy; once called the monk's malaise.","A midsummer acedia kept her staring at the unfinished manuscript."],
+["Apricity","n.","The warmth of the sun in winter.","He turned his face to the apricity on the frozen porch."],
+["Hiraeth","n.","A Welsh word for deep longing for a home that may no longer exist, or never did.","Hearing the old song stirred a hiraeth she couldn't explain."],
+["Sehnsucht","n.","A German word for an intense yearning for something indefinite or out of reach.","A sudden sehnsucht for far-off places made him open the atlas."],
+["Torschlusspanik","n.","A German word for the anxiety that time and opportunities are running out as you age.","At thirty-nine, torschlusspanik had her scrolling through travel sites at midnight."],
+["Weltschmerz","n.","World-weariness; sadness at the gap between the world as it is and as it should be.","Reading the headlines every morning gave him a heavy case of weltschmerz."]],
+"📖 Language & Words":[
+["Aposiopesis","n.","Breaking off mid-sentence, as if unwilling or unable to continue.","Her aposiopesis, 'Well, if you think I'm going to—', said more than a finished threat."],
+["Eggcorn","n.","A misheard or reinterpreted phrase that still makes a kind of sense, like 'old-timers' disease'.","Writing 'for all intensive purposes' is a classic eggcorn."],
+["Floccinaucinihilipilification","n.","The act of estimating something as worthless.","His floccinaucinihilipilification of the award made the winners wince."],
+["Hapax legomenon","n.","A word that appears only once in a text or in a recorded language.","Scholars still argue over that hapax legomenon, since no other text uses it."],
+["Paraprosdokian","n.","A sentence whose ending is so unexpected that it makes you rethink the beginning.","He loved a good paraprosdokian, the kind of sentence that swerves in its final words."],
+["Sesquipedalian","adj.","Given to using long words; (of a word) very long.","The professor's sesquipedalian lectures left half the class reaching for a dictionary."],
+["Tmesis","n.","Inserting a word or words into the middle of another word, as in 'abso-bloomin'-lutely'.","Her favourite tmesis was 'un-flipping-believable'."]],
+"🎭 People & Behaviour":[
+["Lickspittle","n.","A servile person who flatters those in power.","The council was full of lickspittles who agreed with the mayor on everything."],
+["Mugwump","n.","A person who stays aloof from partisan loyalties; an independent in politics.","He called himself a mugwump and refused to side with either camp."],
+["Pettifogger","n.","A person who quibbles over trivial points, or a lawyer who uses petty tactics.","The pettifogger bogged down the meeting with endless objections over wording."],
+["Quidnunc","n.","A person eager to know the latest gossip; a busybody.","The village quidnunc knew about the engagement before the couple did."],
+["Snollygoster","n.","A shrewd, unprincipled person, especially a politician.","Voters grew weary of the snollygoster who promised everything and delivered nothing."],
+["Tatterdemalion","n.","A person in ragged clothes; (adj.) ragged and tattered.","A tatterdemalion with a cheerful whistle wandered through the market."],
+["Ultracrepidarian","n.","A person who gives opinions on subjects beyond their knowledge.","At dinner, our resident ultracrepidarian explained neurosurgery with total confidence."]],
+"🔍 Small Things Around You":[
+["Aglet","n.","The hard sheath at the end of a shoelace.","The frayed shoelace had lost its aglet and refused to thread through the eyelet."],
+["Ferrule","n.","A metal ring or cap on the end of a cane, umbrella or tool handle that prevents splitting or wear.","The brass ferrule on his cane clicked on every cobblestone."],
+["Gnomon","n.","The part of a sundial that casts the shadow.","The gnomon's shadow slid slowly across the garden's stone dial."],
+["Lunule","n.","The pale half-moon at the base of a fingernail.","Her lunules were faint, barely visible beneath the polish."],
+["Punt","n.","The indentation in the bottom of a wine bottle.","He ran his thumb along the deep punt of the bottle."],
+["Spurtle","n.","A Scottish wooden stick for stirring porridge.","Grandpa insisted on a beech spurtle to keep the porridge lump-free."],
+["Zarf","n.","A holder, often ornamental metal, for a handleless hot coffee cup.","The Turkish coffee came in a tiny cup nestled in a silver zarf."]]
+};
+const $=id=>document.getElementById(id),th=Object.keys(D),esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const total=th.reduce((a,t)=>a+D[t].length,0);
+$("ct").textContent=total+" rare words · "+th.length+" themes · A to Z within each";
+$("nv").innerHTML=th.map((t,i)=>`<a href="#t${i}">${t}</a>`).join("");
+function draw(){
+  const q=$("q").value.trim().toLowerCase();let n=0;
+  $("m").innerHTML=th.map((t,i)=>{
+    const w=[...D[t]].sort((a,b)=>a[0].localeCompare(b[0])).filter(e=>!q||e[0].toLowerCase().includes(q)||e[2].toLowerCase().includes(q));
+    n+=w.length;if(!w.length)return"";
+    return`<section id="t${i}"><h2>${t}<small>${w.length} WORDS</small></h2>${w.map(e=>`<div class="e"><h3>${esc(e[0])}<i>${e[1]}</i></h3><p>${esc(e[2])}</p><p class="x">“${esc(e[3])}”</p></div>`).join("")}</section>`}).join("");
+  $("no").style.display=n?"none":"block";
+}
+$("q").oninput=draw;draw();
+</script>
+</body>
+</html>
